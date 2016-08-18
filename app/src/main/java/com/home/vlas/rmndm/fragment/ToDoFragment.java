@@ -12,9 +12,9 @@ import com.home.vlas.rmndm.R;
 public class ToDoFragment extends AbstractTabFragment {
     private static final int LAYOUT = R.layout.fragment_example;
 
-    public static BirthdaysFragment getInstance(Context context) {
+    public static ToDoFragment getInstance(Context context) {
         Bundle args = new Bundle();
-        BirthdaysFragment fragment = new BirthdaysFragment();
+        ToDoFragment fragment = new ToDoFragment();
         fragment.setArguments(args);
         fragment.setContext(context);
         fragment.setTitle(context.getString(R.string.tab_item_todo));
