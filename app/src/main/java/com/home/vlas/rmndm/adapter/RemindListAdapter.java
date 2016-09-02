@@ -32,7 +32,13 @@ public class RemindListAdapter extends RecyclerView.Adapter<RemindListAdapter.Re
 
     @Override
     public int getItemCount() {
-        return data.size();
+        if (data != null) {
+            return data.size();
+        } else return 0;
+    }
+
+    public void setData(List<RemindDTO> data) {
+        this.data = data;
     }
 
     public static class RemindViewHolder extends RecyclerView.ViewHolder {
@@ -43,6 +49,13 @@ public class RemindListAdapter extends RecyclerView.Adapter<RemindListAdapter.Re
             super(itemView);
             itemView.findViewById(R.id.cardView);
             title = (TextView) itemView.findViewById(R.id.title);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    System.out.println("CLICK");
+                }
+            });
         }
     }
 

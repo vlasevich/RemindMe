@@ -20,7 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimaryDark"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"></android.support.v7.widget.Toolbar>
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
+            </android.support.v7.widget.Toolbar>
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabLayout"
@@ -30,7 +31,8 @@
                 app:tabIndicatorColor="@color/colorPrimary"
                 app:tabIndicatorHeight="6dp"
                 app:tabSelectedTextColor="@android:color/holo_purple"
-                app:tabTextColor="@android:color/white"></android.support.design.widget.TabLayout>
+                app:tabTextColor="@android:color/white">
+            </android.support.design.widget.TabLayout>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -38,9 +40,10 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.view.ViewPager>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        </android.support.v4.view.ViewPager>
 
-        <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+        <!--<android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +51,7 @@
             android:layout_marginBottom="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"
             android:backgroundTint="@color/colorPrimary"
-            android:src="@mipmap/ic_plus" />
+            android:src="@mipmap/ic_plus" />-->
     </android.support.design.widget.CoordinatorLayout>
 
 
@@ -58,7 +61,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
-        app:menu="@menu/menu_navigation"></android.support.design.widget.NavigationView>
+        app:menu="@menu/menu_navigation">
+    </android.support.design.widget.NavigationView>
 
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,5 +1,6 @@
 package com.home.vlas.rmndm;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -11,6 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.home.vlas.rmndm.adapter.TabsPagerFragmentAdapter;
+import com.home.vlas.rmndm.dto.RemindDTO;
+
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ViewPager viewPager;
+    private TabsPagerFragmentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTabs() {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        TabsPagerFragmentAdapter adapter = new TabsPagerFragmentAdapter(getApplicationContext(), getSupportFragmentManager());
+        adapter = new TabsPagerFragmentAdapter(getApplicationContext(), getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+        new ReminderTask().execute();
+
         TabLayout tablayout = (TabLayout) findViewById(R.id.tabLayout);
         tablayout.setupWithViewPager(viewPager);
     }
@@ -65,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.actionNotificationItem: {
                         showNotificationTab();
+                        break;
+                    }
+                    case R.id.actionNotificationItem2: {
+                        showNotificationTab2();
+                        break;
                     }
                 }
                 return true;
@@ -74,5 +90,27 @@ public class MainActivity extends AppCompatActivity {
 
     private void showNotificationTab() {
         viewPager.setCurrentItem(Constants.TAB_TWO);
+    }
+
+    private void showNotificationTab2() {
+        viewPager.setCurrentItem(Constants.TAB_ONE);
+    }
+
+    public class ReminderTask extends AsyncTask<Void, Void, RemindDTO> {
+
+        @Override
+        protected RemindDTO doInBackground(Void... voids) {
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+            return restTemplate.getForObject(Constants.URL.GET_REMIND_ITEM, RemindDTO.class);
+        }
+
+        @Override
+        protected void onPostExecute(RemindDTO remindDTO) {
+            List<RemindDTO> remindDTOList = new ArrayList<>();
+            remindDTOList.add(remindDTO);
+            adapter.setData(remindDTOList);
+        }
     }
 }

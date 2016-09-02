@@ -4,5 +4,12 @@
         android:id="@+id/actionNotificationItem"
         android:icon="@mipmap/ic_message_text"
         android:orderInCategory="1"
-        android:title="@string/menu_item_notification"></item>
+        android:title="@string/menu_item_notification">
+    </item>
+    <item
+        android:id="@+id/actionNotificationItem2"
+        android:icon="@mipmap/ic_message_text"
+        android:orderInCategory="2"
+        android:title="@string/menu_item_notification">
+    </item>
 </menu>
